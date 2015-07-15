@@ -1,0 +1,32 @@
+{
+  "name": "ionicapp",
+  "version": "1.0.0",
+  "description": "ionicapp: An Ionic project",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "event-stream": "^3.3.1",
+    "gulp": "^3.5.6",
+    "gulp-angular-templatecache": "^1.7.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-dom-src": "^0.2.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-minify-css": "^0.3.13",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^1.3.3",
+    "gulp-uglify": "^1.2.0",
+    "path": "^0.11.14",
+    "rimraf": "^2.4.1",
+    "streamqueue": "^1.1.0"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "gulp-html-replace": "^1.5.1",
+    "gulp-replace": "^0.5.3",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0"
+  },
+  "cordovaPlugins": [
+    "com.ionic.keyboard"
+  ],
+  "cordovaPlatforms": []
+}

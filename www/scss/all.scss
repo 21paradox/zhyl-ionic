@@ -1,0 +1,214 @@
+@import "compass";
+
+
+$sprites-spacing: 20px;
+
+
+@import "sprites/*.png";
+@include all-sprites-sprites;
+
+.links{
+	background-size: 100% auto;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+    -webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	background-repeat: no-repeat;
+	
+	.col-25{
+		color: #6a6a6a;
+		text-align: center;
+	}
+
+	img{
+		width: 41px;
+		height: 41px;
+		margin: 0 auto;
+		display: block;
+	}
+	
+	p {
+		font-size: 12px;
+		margin-bottom: 0;
+	}
+}
+
+.new-list{
+	
+	.item-thumbnail-left>img{
+		 max-height: initial;
+  		height: auto;
+	}
+
+.new_list_content{
+font-size: 12px;
+  color: grey;
+  display: block;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: initial;
+  white-space: initial;
+  
+  span {
+    font-size: 14px!important;
+	color: grey!important;
+  }
+}
+ 
+ 
+ h2{
+	 margin-top: 3px;
+	 margin-bottom: 10px;
+ }
+ 
+ .item-thumbnail-left{
+	  padding-bottom: 0px;
+  	min-height: 95px;
+ }
+}
+
+
+@mixin resize-sprite($map, $sprite, $percent) {
+  $spritePath:    sprite-path($map);
+  $spriteWidth:   image-width($spritePath);
+  $spriteHeight:  image-height($spritePath);
+  $width: image-width(sprite-file($map, $sprite));
+  $height: image-height(sprite-file($map, $sprite));
+ 
+  @include background-size(ceil($spriteWidth * ($percent/100)) ceil($spriteHeight * ($percent/100)));
+  width: ceil($width*($percent/100));
+  height: ceil($height*($percent/100));
+  background-position: 0 floor(nth(sprite-position($map, $sprite), 2)  * ($percent/100) );
+}
+
+// .sprites-icon-house-on, .sprites-icon-house-off {
+// 	width: 16px;
+// 	height: 16px;
+// 	background-size: 50%;
+// }
+
+.tab-item .icon{
+	//margin-bottom: 5px;
+	//margin-top: 5px;
+}
+
+.icon{
+ 
+	
+	&.sprites-icon-house-on{
+		$spriteName: icon-house-on;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px
+	}
+	
+	&.sprites-icon-house-off{
+		$spriteName: icon-house-off;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px;
+	}
+	
+	&.sprites-icon-heart-on{
+		$spriteName: icon-heart-on;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px;
+	}
+	
+	&.sprites-icon-heart-off{
+		$spriteName: icon-heart-off;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px;
+	}
+	
+	&.sprites-icon-heart-on{
+		$spriteName: icon-heart-on;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px;
+	}
+	
+	&.sprites-icon-leaf-off {
+		$spriteName: icon-leaf-off;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px;
+	}
+	
+	&.sprites-icon-leaf-on {
+		$spriteName: icon-leaf-on;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px;
+	}
+	
+	&.sprites-icon-people-on {
+		$spriteName: icon-people-on;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px;
+	}
+	&.sprites-icon-people-off {
+		$spriteName: icon-people-off;
+	    $percentage: 50;
+	    @include resize-sprite($sprites-sprites, $spriteName, $percentage);
+		width: 18px;
+		height: 18px;
+	}
+
+}
+
+.tabs{
+	//height: 44px;
+	//line-height: 44px;
+}
+
+
+.tab-title{
+	margin-top: 4px;
+	display: block;
+}
+
+.tab-nav>a{
+	padding-top: 5px;
+}
+
+
+
+.news-detail{
+	  padding: 10px 15px 15px;
+	h3{
+		  margin-bottom: 12px;
+  line-height: 1.4;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+	}
+	
+	
+	&>img{
+		display: block;
+		  margin-bottom: 6px;
+	}
+	
+	p{
+		text-indent: 35px;
+	}
+	
+ 	span{
+		  font-size: 16px!important;
+  		color: grey!important;
+	}
+	
+	
+}
