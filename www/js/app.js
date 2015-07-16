@@ -9,7 +9,7 @@ ionic.Platform.isReady = true;
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('zhyl', ['ionic', 'zhyl.controllers', 'zhyl.services'])
+angular.module('zhyl', ['ionic', 'zhyl.controllers', 'zhyl.services','zhyl.captcha'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -62,31 +62,23 @@ angular.module('zhyl', ['ionic', 'zhyl.controllers', 'zhyl.services'])
       }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.order', {
+      url: '/order',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-order': {
+          templateUrl: 'templates/tab-order.html',
+          controller: 'OrderCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+    
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.map', {
+    url: '/map',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-map': {
+        templateUrl: 'templates/tab-map.html',
+        controller: 'MapCtrl'
       }
     }
   });

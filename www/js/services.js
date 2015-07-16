@@ -71,7 +71,7 @@ angular.module('zhyl.services', [])
     dataService.services = function () {
 
       return $http({
-        url: baseUrl + '/sx_app_servers/services',
+        url: baseUrl + '/sx_pension_app/services',
         method: 'GET',
         params: { noCache: current },
         cache: true,
@@ -96,7 +96,7 @@ angular.module('zhyl.services', [])
     dataService.new_list = function () {
 
       return $http({
-        url: baseUrl + '/sx_app_servers/new_list',
+        url: baseUrl + '/sx_pension_app/new_list',
         method: 'GET',
         params: { noCache: current },
         cache: true,
