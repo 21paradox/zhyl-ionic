@@ -1,11 +1,22 @@
-<ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
+<ion-view view-title="我的">
+  <ion-content scroll="false">
+     
+     <div class="login-wrap" ng-show="isLogined === false">
+       
+        <button class="button button-large button-assertive" ng-click="loginBaidu()">
+          百度账号登录
+        </button>
         
-        <img src="//www.baidu.com/iamges/"/>
-    </ion-toggle>
-    </ion-list>
+        <button class="button button-large button-positive" ng-click="loginQQ()">
+          QQ账号登录
+        </button>
+        
+     </div>
+ 
+     <div class="login-wrap" ng-show="isLogined === true">
+       {{accountInfo}}
+     </div>
+     
+     
   </ion-content>
 </ion-view>

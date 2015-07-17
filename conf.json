@@ -1,0 +1,6 @@
+{
+    "src":          "build",
+    "dest":         "qiniu:access_key=DQ4j8Y4JZswvknfr10DSaOjaTMekfGOmMi0h-gok&secret_key=hzTn3-QHfBfECgdb751d2a0bDWEecUMVz11EkJKC&bucket=zhyl&key_prefix=&threshold=1",
+    "deletable":    0,
+    "debug_level":  1
+}

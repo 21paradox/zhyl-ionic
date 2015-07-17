@@ -14,6 +14,7 @@ line_comments = false
 
 output_style = (environment == :production) ? :compact : :expanded
 
+relative_assets = true
 
 
 # You can select your preferred output style here (can be overridden via the command line):

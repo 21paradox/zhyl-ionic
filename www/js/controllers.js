@@ -118,8 +118,90 @@ angular.module('zhyl.controllers', ['zhyl.services','zhyl.captcha'])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+
+
+.controller('AccountCtrl', function ($scope, $stateParams, $location, dataService) {
+
+    var uri = window.location.href.split("#")[0];
+
+    // 在应用管理页面下的 社会化服务 - 基础设置中设置该地址
+    var redirect_url = uri + '#/view5?login=1';
+
+    // 获取当前用户
+    var user = baidu.frontia.getCurrentAccount();
+
+    $scope.isLogined = false;
+
+    if (user || $stateParams.login == 1) {
+
+        $scope.isLogined = true;
+
+        if (user) {
+
+            getAccountInfo(user.accountId);
+            $scope.name = user.accountName;
+
+        } else {
+
+            $scope.$on('login', function () {
+                user = baidu.frontia.getCurrentAccount();
+                $scope.name = user.accountName;
+                getAccountInfo(user.accountId);
+            });
+
+        }
+    }
+
+
+    $scope.accountInfo = null;
+
+    function getAccountInfo(accountId) {
+
+        dataService.getAccountInfo(accountId).then(function (data) {
+
+            $scope.accountInfo = data;
+
+            if (data.name) {
+                $scope.name = data.name;
+            }
+        });
+    }
+
+
+    $scope.loginBaidu = function () {
+
+        baidu.frontia.social.login({
+            response_type: 'token',
+            media_type: 'baidu',  // 登录百度帐号
+            redirect_uri: redirect_url,
+            client_type: 'web',
+            scope: 'netdisk'
+        });
+    }
+
+
+    $scope.loginQQ = function () {
+
+        baidu.frontia.social.login({
+            response_type: 'token',
+            media_type: 'qqdenglu', // 登录 QQ 帐号
+            redirect_uri: redirect_url,
+            client_type: 'web'
+        });
+    }
+
+
+    $scope.logout = function () {
+        baidu.frontia.logOutCurrentAccount();
+        //$rootScope.user = null;
+        $scope.isLogined = false;
+
+        $location.url($location.path());
+    }
+
+
+    $scope.goto = function (path) {
+        $location.path(path);
+    }
+
 });

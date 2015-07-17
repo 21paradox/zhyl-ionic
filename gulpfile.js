@@ -56,7 +56,7 @@ gulp.task('git-check', function(done) {
 var gulp = require('gulp'); 
 var domSrc = require('gulp-dom-src'); // 用来打包index.html的js文件为一个
 var concat = require('gulp-concat');    // 合并js
-var uglify = require('gulp-uglify');    // 压缩js
+//var uglify = require('gulp-uglify');    // 压缩js
 var templateCache = require('gulp-angular-templatecache');
 
 var es = require('event-stream');
@@ -64,8 +64,9 @@ var streamqueue = require('streamqueue');
 var cheerio = require('cheerio');   //改变dom结构
 var rimraf = require("rimraf");
 var path = require('path');
-var  minifyCSS = require('gulp-minify-css');
+var minifyCSS = require('gulp-minify-css');
 var imagemin = require('gulp-imagemin');
+var ngAnnotate = require('gulp-ng-annotate');
 
  
 var replace = require('gulp-replace');
@@ -114,7 +115,7 @@ gulp.task('build', function () {
 
     .pipe(concat('app.full.min.js'))
 
-    //.pipe(uglify())
+    //.pipe(ngAnnotate())
 
     .pipe(dest());
     

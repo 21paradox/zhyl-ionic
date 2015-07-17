@@ -11,7 +11,7 @@ ionic.Platform.isReady = true;
 // 'starter.controllers' is found in controllers.js
 angular.module('zhyl', ['ionic', 'zhyl.controllers', 'zhyl.services','zhyl.captcha'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,6 +23,24 @@ angular.module('zhyl', ['ionic', 'zhyl.controllers', 'zhyl.services','zhyl.captc
       StatusBar.styleLightContent();
     }
   });
+  
+
+    // 第三方登录配置信息
+    var AK = 'ZusobXS8IsrXqnprYgmTlOQ3';
+
+    // 初始化 frontia
+    baidu.frontia.init(AK);
+
+    baidu.frontia.social.setLoginCallback({
+        success: function (user) {
+            $rootScope.$broadcast('login');
+        },
+        error: function (error) {
+            console.log('error');
+            console.log(error)
+        }
+    });
+ 
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -79,6 +97,16 @@ angular.module('zhyl', ['ionic', 'zhyl.controllers', 'zhyl.services','zhyl.captc
       'tab-map': {
         templateUrl: 'templates/tab-map.html',
         controller: 'MapCtrl'
+      }
+    }
+  })
+ 
+   .state('tab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-account.html',
+        controller: 'AccountCtrl'
       }
     }
   });
