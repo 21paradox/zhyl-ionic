@@ -130,7 +130,7 @@ angular.module('zhyl.controllers', ['zhyl.services','zhyl.captcha'])
     // 获取当前用户
     var user = baidu.frontia.getCurrentAccount();
 
-    $scope.isLogined = false;
+    $scope.isLogined = true;
 
     if (user || $stateParams.login == 1) {
 

@@ -1,5 +1,10 @@
-<ion-view view-title="我的">
-  <ion-content scroll="false">
+<ion-view view-title="个人中心">
+
+   <ion-nav-buttons side="right">
+       <button class="button button-clear button-positive" style="color: #fff; font-size:14px">编辑</button>
+    </ion-nav-buttons>
+   
+  <ion-content scroll="false" class="my-info-wrap">
      
      <div class="login-wrap" ng-show="isLogined === false">
        
@@ -13,8 +18,31 @@
         
      </div>
  
-     <div class="login-wrap" ng-show="isLogined === true">
-       {{accountInfo}}
+     <div ng-show="isLogined === true" >
+  
+      
+      <div class="my-info-1">
+        <img src="http://i.gtimg.cn/vipstyle/frozenui/1.2.0/img/default.png?_bid=306" />
+        <span>张新生</span>
+      </div>
+       
+       <ul class="ui-list ui-list-text ui-list-link ui-border-tb mt20">
+            <li class="ui-border-t" >
+                <p>手机号:<span class="info">123123</span></p>
+             </li>
+
+            <li class="ui-border-t">
+                <p>常用地址:<span class="info">asdsdd</span></p>
+            </li>
+        </ul>
+       
+       <ul class="ui-list ui-list-text ui-list-link ui-border-tb mt20">
+          <li class="ui-border-t ui-list-item-link" ng-click="goto('/view5.orders')">
+              <p>我的订单</p>
+          </li>
+      </ul>
+       
+       <a href="javascript:;" class="quit-btn mt20">退出登录</a>
      </div>
      
      

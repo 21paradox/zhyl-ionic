@@ -27,15 +27,15 @@
 .new-list h2 { margin-top: 3px; margin-bottom: 10px; }
 .new-list .item-thumbnail-left { padding-bottom: 0px; min-height: 95px; }
 
-.icon.sprites-icon-house-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 16px; height: 16px; background-position: 0 -78px; width: 18px; height: 18px; }
-.icon.sprites-icon-house-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 16px; height: 16px; background-position: 0 -52px; width: 18px; height: 18px; }
-.icon.sprites-icon-heart-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 18px; height: 16px; background-position: 0 -26px; width: 18px; height: 18px; }
-.icon.sprites-icon-heart-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 18px; height: 16px; background-position: 0 0; width: 18px; height: 18px; }
-.icon.sprites-icon-heart-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 18px; height: 16px; background-position: 0 -26px; width: 18px; height: 18px; }
-.icon.sprites-icon-leaf-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 15px; height: 16px; background-position: 0 -104px; width: 18px; height: 18px; }
-.icon.sprites-icon-leaf-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 15px; height: 16px; background-position: 0 -130px; width: 18px; height: 18px; }
-.icon.sprites-icon-people-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 17px; height: 16px; background-position: 0 -182px; width: 18px; height: 18px; }
-.icon.sprites-icon-people-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 17px; height: 16px; background-position: 0 -156px; width: 18px; height: 18px; }
+.icon.sprites-icon-house-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 16px; height: 16px; background-position: 0 -78px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
+.icon.sprites-icon-house-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 16px; height: 16px; background-position: 0 -52px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
+.icon.sprites-icon-heart-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 18px; height: 16px; background-position: 0 -26px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
+.icon.sprites-icon-heart-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 18px; height: 16px; background-position: 0 0; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
+.icon.sprites-icon-heart-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 18px; height: 16px; background-position: 0 -26px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
+.icon.sprites-icon-leaf-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 15px; height: 16px; background-position: 0 -104px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
+.icon.sprites-icon-leaf-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 15px; height: 16px; background-position: 0 -130px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
+.icon.sprites-icon-people-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 17px; height: 16px; background-position: 0 -182px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
+.icon.sprites-icon-people-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 17px; height: 16px; background-position: 0 -156px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
 
 .tab-title { margin-top: 4px; display: block; }
 
@@ -64,3 +64,32 @@
 
 .login-wrap { position: absolute; top: 50%; width: 100%; transform: translateY(-50%); }
 .login-wrap button { display: block; width: 80%; margin-left: 10%; margin-bottom: 20px; }
+
+.my-info-wrap { background: #f0f0f0; }
+
+.my-info-1 { border-top: 1px solid #d3d7dc; border-bottom: 1px solid #d3d7dc; margin-top: 20px; padding: 9px; background: #fff; }
+.my-info-1 img { border-radius: 50%; width: 45px; height: 45px; vertical-align: middle; margin-right: 25px; }
+.my-info-1 span { display: inline-block; vertical-align: middle; }
+
+.mt20 { margin-top: 20px; }
+
+.ui-list, .ui-tab-nav { background-color: #fff; }
+
+.ui-border-tb { border-top: #e0e0e0 1px solid; border-bottom: #e0e0e0 1px solid; background-image: none; }
+
+.ui-list > li.ui-border-t:first-child { border: 0; background-image: none; }
+
+.ui-list-text > li { line-height: 20px; padding: 12px 25px 12px 0; font-size: 16px; }
+
+.ui-list > li { position: relative; display: -webkit-box; display: box; margin-left: 15px; }
+
+.ui-border-t { border-top: 1px solid #e0e0e0; }
+.ui-border-t p { margin: 0; }
+
+.ui-border-t .info { margin-left: 10px; font-size: 12px; }
+
+.ui-list-link li:after, li.ui-list-item-link:after { background: url(http://i.gtimg.cn/vipstyle/frozenui/1.2.0/img/icon.png?_bid=306) 0 -75px no-repeat; -webkit-background-size: 150px auto; width: 9px; height: 15px; margin-top: -7px; }
+
+.ui-list li.selected:after, .ui-list-link li:after, li.ui-list-item-link:after { content: ""; position: absolute; display: block; right: 15px; top: 50%; }
+
+.quit-btn { width: 200px; line-height: 30px; height: 30px; display: block; text-align: center; margin: 0 auto; margin-top: 20px; color: #387ef5; font-size: 16px; text-decoration: none; }
