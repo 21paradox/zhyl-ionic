@@ -1489,6 +1489,8 @@ baidu.frontia = {},
             g = {
                 setLoginCallback: function (t) {
                     var r = a();
+                    console.log(r);
+                    
                     if (!e.getCurrentAccount() && r.access_token && t) {
                         var n = {};
                         n.action_name = "social.login", n.timestamp = c(), t.success || (t.success = function () { }), t.error || (t.error = function () { }), e.jsonp.get(l, {
@@ -1528,7 +1530,26 @@ baidu.frontia = {},
                     if (!t.media_type) throw new baidu.frontia.error(baidu.frontia.ERR_MSG.INVALID_PARAMS);
                     if (t.response_type != d.TOKEN) throw new baidu.frontia.error(baidu.frontia.ERR_MSG.INVALID_PARAMS);
                     var r = n(t);
-                    location.href = r
+ 
+                    
+                    var ref = window.open(r, "_blank", "location=no,hidden=no,toolbar=no");
+                    
+                    ref.addEventListener('loadstart', function(event) {
+                      
+                      if(event.url.indexOf(t.redirect_uri) == 0) {
+                         var index =  event.url.indexOf('#') + 1;
+                         var hash =  event.url.slice(index);
+
+                        var hash1 = '#/tab/account?login=1&' +  hash;
+                                   
+                        window.location.hash = hash1;
+                        window.location.reload();
+                        ref.close();
+                         
+                      }
+           
+                    }); 
+                      
                 }
             };
         e.social = g

@@ -6,6 +6,8 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var uglify = require('gulp-uglify');
+
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -91,14 +93,14 @@ gulp.task('build', function () {
 
     var ngCacheStream = gulp.src(['www/templates/*.html'])
     
-                      .pipe(replace(/<img[^>]+src="?([^"\s]+)"?\s.*\/>/g, function(a, imgUrl){
-                        
-                        console.log(imgUrl);
-                        return 'http://localhost:8100' + imgUrl;
+                      .pipe(replace(/<img[^>n]+src="?([^"\sh]+)"?\s.*\/>/g, function(a, imgUrl){
+
+                        return '<img src="http://7xkfoy.com1.z0.glb.clouddn.com/'+ imgUrl +'" />'
+                        //return 'http://7xkfoy.com1.z0.glb.clouddn.com/' + imgUrl;
                       }))
     
                         .pipe(templateCache('templates.js', {
-                            module: 'starter',
+                            module: 'zhyl',
                             root: 'templates'
                         }));
                         
@@ -115,7 +117,9 @@ gulp.task('build', function () {
 
     .pipe(concat('app.full.min.js'))
 
-    //.pipe(ngAnnotate())
+    .pipe(ngAnnotate())
+
+    .pipe(uglify())
 
     .pipe(dest());
     

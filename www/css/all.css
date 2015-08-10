@@ -37,6 +37,8 @@
 .icon.sprites-icon-people-on { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 17px; height: 16px; background-position: 0 -182px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
 .icon.sprites-icon-people-off { -moz-background-size: 18px 198px; -o-background-size: 18px 198px; -webkit-background-size: 18px 198px; background-size: 18px 198px; width: 17px; height: 16px; background-position: 0 -156px; width: 18px; height: 18px; -webkit-transform: scale(1.1); }
 
+.tabs { height: 47px; }
+
 .tab-title { margin-top: 4px; display: block; }
 
 .tab-nav > a { padding-top: 5px; }
@@ -53,7 +55,7 @@
 .xiadan .ion-star { font-size: 12px; color: #ff6c00; margin-right: 7px; }
 .xiadan .input-label { font-size: 14px; width: 30%; }
 .xiadan .button-full { width: 90%; margin: 0 auto; margin-top: 30px; }
-.xiadan .ion-loop { position: absolute; right: 5px; font-size: 25px; }
+.xiadan .ion-loop { position: absolute; right: 7px; font-size: 25px; top: 10px; }
 
 .captcha { margin-top: 18px; }
 .captcha .checkcode-img { transform: scale(0.5); -webkit-transform: scale(0.5); position: absolute; right: -19px; top: -2px; }
@@ -62,7 +64,7 @@
 
 .vertical-align { position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); }
 
-.login-wrap { position: absolute; top: 50%; width: 100%; transform: translateY(-50%); }
+.login-wrap { position: absolute; top: 50%; width: 100%; margin-top: -80px; }
 .login-wrap button { display: block; width: 80%; margin-left: 10%; margin-bottom: 20px; }
 
 .my-info-wrap { background: #f0f0f0; }
@@ -93,3 +95,13 @@
 .ui-list li.selected:after, .ui-list-link li:after, li.ui-list-item-link:after { content: ""; position: absolute; display: block; right: 15px; top: 50%; }
 
 .quit-btn { width: 200px; line-height: 30px; height: 30px; display: block; text-align: center; margin: 0 auto; margin-top: 20px; color: #387ef5; font-size: 16px; text-decoration: none; }
+
+.toast-bottom-full-width { margin-bottom: 60px; }
+
+.editInfo .ion-close-circled { right: 10px; position: absolute; top: 11px; color: #999; }
+.editInfo .button { width: 90%; margin: 0 auto; margin-top: 50px; }
+
+.orderList h4 { font-size: 14px; }
+.orderList p { font-size: 13px; }
+
+.dash .slider img { width: 100%; }

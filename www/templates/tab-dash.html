@@ -1,55 +1,60 @@
-<ion-view view-title="智慧养老">
+<ion-view view-title="智慧养老" class="dash">
   <ion-content>
     
     <ion-slide-box 
       on-slide-changed="slideHasChanged($index)">
       
       <ion-slide>
-        <img src="img/banner1.jpg" width="100%" /> 
+        <img src="img/banner1.jpg"  /> 
       </ion-slide>
       <ion-slide>
-        <img src="img/banner2.jpg" width="100%" /> 
+        <img src="img/banner2.jpg"  /> 
       </ion-slide>
       <ion-slide>
-       <img src="img/banner3.jpg" width="100%" /> 
+       <img src="img/banner3.jpg"  /> 
       </ion-slide>
     </ion-slide-box>
     
     <div class="row links">
-      <div class="col col-25">
-         <img src="img/icon1.png"/>
-         <p>打扫卫生</p>
+      
+      <div class="col col-25" ng-click="goto('/tab/orderWithData/48')">
+           <img src="img/icon2.png" />
+            <p>家庭厨师</p>
       </div>
-      <div class="col col-25">
-        <img src="img/icon2.png" />
-         <p>家庭厨师</p>
-      </div>
-      <div class="col col-25">
+      
+      <div class="col col-25" ng-click="goto('/tab/orderWithData/49')">
         <img src="img/icon3.png" />
          <p>上门理发</p>
       </div>
       
-      <div class="col col-25">
+      <div class="col col-25" ng-click="goto('/tab/orderWithData/51')">
         <img src="img/icon4.png" />
          <p>就医陪护</p>
-      </div>
- 
-      <div class="col col-25">
+      </div> 
+      
+      <div class="col col-25" ng-click="goto('/tab/orderWithData/52')">
         <img src="img/icon5.png" />
          <p>心理咨询</p>
       </div>
       
-      <div class="col col-25">
+      <div class="col col-25" ng-click="goto('/tab/orderWithData/53')">
         <img src="img/icon6.png" />
          <p>陪读陪看</p>
       </div>
       
-      <div class="col col-25">
+      <div class="col col-25" ng-click="goto('/tab/orderWithData/54')">
         <img src="img/icon7.png" />
          <p>临终关怀</p>
       </div>
       
-      <div class="col col-25">
+      
+      <div class="col col-25" ng-click="goto('/tab/orderWithData/143')">
+         <img src="img/icon1.png" />
+         <p>打扫卫生</p>
+      </div>
+       
+      
+      <div class="col col-25" ng-click="goto('/tab/order')">
         <img src="img/icon8.png" />
          <p>更多</p>
       </div>

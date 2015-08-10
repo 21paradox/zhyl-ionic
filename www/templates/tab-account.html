@@ -1,7 +1,9 @@
 <ion-view view-title="个人中心">
 
    <ion-nav-buttons side="right">
-       <button class="button button-clear button-positive" style="color: #fff; font-size:14px">编辑</button>
+       <a href="#/tab/accountEdit" class="button button-clear button-positive" style="color: #fff; font-size:14px"
+         ng-show="isLogined === true"
+         >编辑</a>
     </ion-nav-buttons>
    
   <ion-content scroll="false" class="my-info-wrap">
@@ -23,26 +25,25 @@
       
       <div class="my-info-1">
         <img src="http://i.gtimg.cn/vipstyle/frozenui/1.2.0/img/default.png?_bid=306" />
-        <span>张新生</span>
+        <span>{{name}}</span>
       </div>
        
        <ul class="ui-list ui-list-text ui-list-link ui-border-tb mt20">
-            <li class="ui-border-t" >
-                <p>手机号:<span class="info">123123</span></p>
+            <li class="ui-border-t"  ng-click="goto('/tab/accountEdit')">
+                <p>手机号:<span class="info">{{accountInfo.telephone}}</span></p>
              </li>
 
-            <li class="ui-border-t">
-                <p>常用地址:<span class="info">asdsdd</span></p>
+            <li class="ui-border-t"  ng-click="goto('/tab/accountEdit')">
+                  <p>常用地址:<span class="info">{{accountInfo.address}}</span></p>
             </li>
         </ul>
        
        <ul class="ui-list ui-list-text ui-list-link ui-border-tb mt20">
-          <li class="ui-border-t ui-list-item-link" ng-click="goto('/view5.orders')">
-              <p>我的订单</p>
+          <li class="ui-border-t ui-list-item-link" ng-click="goto('/tab/orderList')">
+               <p>我的订单</p>
           </li>
       </ul>
-       
-       <a href="javascript:;" class="quit-btn mt20">退出登录</a>
+       <a href="javascript:;" class="quit-btn mt20" ng-click="logout()">退出登录</a>
      </div>
      
      

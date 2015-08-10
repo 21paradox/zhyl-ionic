@@ -1,0 +1,22 @@
+<ion-view view-title="编辑个人信息">
+  <ion-content class="editInfo">
+    
+    <div class="list ">
+      <label class="item item-input">
+        <input type="text"  placeholder="请输入您的姓名" ng-model="$parent.name">
+        <i class="ion-close-circled" ng-show="$parent.name" ng-click="$parent.name = null"></i>
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="请输入手机号" ng-model="$parent.phone">
+        <i class="ion-close-circled" ng-show="phone" ng-click="$parent.phone = null"></i>
+      </label>
+      <label class="item item-input">
+        <textarea placeholder="常用地址" ng-model="$parent.address"></textarea>
+        <i class="ion-close-circled" ng-show="address" ng-click="$parent.address = null"></i>
+      </label>
+    </div>
+    
+      <button class="button button-full button-positive" ng-click="update()">确定</button>
+    
+  </ion-content>
+</ion-view>

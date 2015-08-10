@@ -1,6 +1,6 @@
 angular.module('zhyl.services', [])
 
-  .factory('dataService', ['$http', function ($http) {
+  .factory('dataService', ['$http', '$q', function ($http, $q) {
 
 
     var current = new Date().getTime();
@@ -16,13 +16,41 @@ angular.module('zhyl.services', [])
     } else {
       baseUrl = 'http://admin.sx96345.com';
     }
-
-    var dataService = {};
+    baseUrl = 'http://218.244.139.213:9000';
 
     dataService.services = function () {
 
       return $http({
         url: baseUrl + '/sx_pension_app/services',
+        method: 'GET',
+        params: { noCache: current },
+        cache: true,
+        responseType: 'json'
+      });
+    };
+  
+    //1、服务列表
+    //请求链接：http://admin.sx96345.com/sx_app_servers/services
+    //参数：无
+    //返回结果：
+    // [{
+    //     "data_config_id":1,
+    //     "data_config_name":"服务分类名",
+    //     "services":
+    //      [{
+    //          "service_id":1,
+    //          "service_name":"服务名"
+    //      },
+    //       ...
+    //      ]
+    // },
+    //   ...
+    //]
+
+    dataService.getAllservices = function () {
+
+      return $http({
+        url: baseUrl + '/sx_app_servers/services',
         method: 'GET',
         params: { noCache: current },
         cache: true,
@@ -54,10 +82,10 @@ angular.module('zhyl.services', [])
         responseType: 'json'
       });
     };
-  
-    
+
+
     var cache = {};
-    
+
     dataService.cache = cache;
 
     // 获取手机号码和地址 用户信息, 根据 百度登陆的 socialId
@@ -72,13 +100,6 @@ angular.module('zhyl.services', [])
       return $http({
         method: 'POST',
         url: baseUrl + '/sx_app_servers/third_login',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        transformRequest: function (obj) {
-          var str = [];
-          for (var p in obj)
-            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-          return str.join("&");
-        },
         data: { social_id: accountId },
         responseType: 'json'
       })
@@ -89,13 +110,68 @@ angular.module('zhyl.services', [])
           cache.accountId = response.data;
           return response.data;
         });
-        
+
     };
     
-
-
-
-
-    return  dataService;
+ 
   
+    //var lock = false;
+    dataService.updateAccountInfo = function (id, accountId, name, phone, address) {
+
+      return $http({
+        url: baseUrl + '/sx_app_servers/update_user',
+        method: 'POST',
+        data: {
+          id: id,
+          name: name,
+          telephone: phone,
+          address: address
+        },
+        responseType: 'json'
+      });
+
+    };
+
+
+    dataService.order = function (config) {
+      // return $http.post(baseUrl + '/sx_app_servers/save_order', {
+      //    order: config
+      // });
+       
+      return $http({
+        url: baseUrl + '/sx_app_servers/save_order',
+        method: 'POST',
+        data: {
+          order: config
+        },
+        responseType: 'json'
+      });
+    };
+
+
+    dataService.getOrders = function (id) {
+
+      return $http({
+        url: baseUrl + '/sx_app_servers/order_list',
+        method: 'GET',
+        params: { noCache: new Date().getTime(), user_id: id },
+        cache: false,
+        responseType: 'json'
+      });
+    }
+    
+     // 地址
+     dataService.getLocation = function () {
+
+        return $http({
+          url: baseUrl + '/sx_pension_app/care_centers',
+          method: 'GET',
+          cache: false,
+          responseType: 'json'
+        });
+    }
+     
+
+    return dataService;
+
   }]);
