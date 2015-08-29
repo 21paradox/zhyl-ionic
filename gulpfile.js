@@ -1,27 +1,48 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var bower = require('bower');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var sh = require('shelljs');
-var uglify = require('gulp-uglify');
+var appName = 'zhyl';
 
+console.time('load-plugin');
+var lazy = require('lazy-modules');
+//var streamqueue = require('streamqueue');
+var es = require('event-stream');
+
+var gulp = require('gulp');
+var concat = require('gulp-concat');
+
+var rimraf = require("rimraf");
+var path = require('path');
+var url = require('url');
+
+lazy('node_modules/gulp-uglify'); /* var gulp_uglify */
+
+lazy('node_modules/gulp-dom-src'); /* var gulp_dom_src */ //用来打包index.html的js文件为一个
+
+lazy('node_modules/gulp-angular-templatecache');  /* var gulp_angular_templatecache */
+
+lazy('node_modules/cheerio'); /* var cheerio */  //改变dom结构
+
+lazy('node_modules/gulp-minify-css'); /* var gulp_minify_css */
+
+lazy('node_modules/gulp-imagemin'); /* var gulp_imagemin */
+
+lazy('node_modules/gulp-ng-annotate'); /* var gulp_ng_annotate */
+
+console.timeEnd('load-plugin');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('sass', function (done) {
 
-gulp.task('sass', function(done) {
+  var sass = require('gulp-sass');
+  var rename = require('gulp-rename');
+
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass({
       errLogToConsole: true
     }))
     .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
+    .pipe(gulp_minify_css({
       keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
@@ -29,148 +50,110 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
-gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
-});
-
-gulp.task('install', ['git-check'], function() {
-  return bower.commands.install()
-    .on('log', function(data) {
-      gutil.log('bower', gutil.colors.cyan(data.id), data.message);
-    });
-});
-
-gulp.task('git-check', function(done) {
-  if (!sh.which('git')) {
-    console.log(
-      '  ' + gutil.colors.red('Git is not installed.'),
-      '\n  Git, the version control system, is required to download Ionic.',
-      '\n  Download git here:', gutil.colors.cyan('http://git-scm.com/downloads') + '.',
-      '\n  Once git is installed, run \'' + gutil.colors.cyan('gulp install') + '\' again.'
-    );
-    process.exit(1);
-  }
-  done();
-});
-
-
-
-var gulp = require('gulp'); 
-var domSrc = require('gulp-dom-src'); // 用来打包index.html的js文件为一个
-var concat = require('gulp-concat');    // 合并js
-//var uglify = require('gulp-uglify');    // 压缩js
-var templateCache = require('gulp-angular-templatecache');
-
-var es = require('event-stream');
-var streamqueue = require('streamqueue');
-var cheerio = require('cheerio');   //改变dom结构
-var rimraf = require("rimraf");
-var path = require('path');
-var minifyCSS = require('gulp-minify-css');
-var imagemin = require('gulp-imagemin');
-var ngAnnotate = require('gulp-ng-annotate');
-
- 
-var replace = require('gulp-replace');
-
-gulp.task('templates', function(){
-  gulp.src(['file.txt'])
-    .pipe(replace(/foo(.{3})/g, '$1foo'))
-    .pipe(gulp.dest('build/file.txt'));
-}); 
-
-
-gulp.task('clean', function(cb) {   
-    rimraf(path.resolve('build'), cb);    
+gulp.task('clean', function (cb) {
+  rimraf(path.resolve('build'), cb);
 });
 
 var dest = function (p) {
-    var path = p || '';
-    return gulp.dest('build/' + path);
+  var path = p || '';
+  return gulp.dest('build/' + path);
 }
 
 gulp.task('build', function () {
 
-    var ngCacheStream = gulp.src(['www/templates/*.html'])
-    
-                      .pipe(replace(/<img[^>n]+src="?([^"\sh]+)"?\s.*\/>/g, function(a, imgUrl){
+  var ngCacheStream = gulp.src(['www/templates/*.html'])
 
-                        return '<img src="http://7xkfoy.com1.z0.glb.clouddn.com/'+ imgUrl +'" />'
-                        //return 'http://7xkfoy.com1.z0.glb.clouddn.com/' + imgUrl;
-                      }))
-    
-                        .pipe(templateCache('templates.js', {
-                            module: 'zhyl',
-                            root: 'templates'
-                        }));
-                        
-                        
-    var jsStream = domSrc({
-        file: 'www/index.html',
-        selector: 'script[data-concat!="false"]',
-        attribute: 'src'
-    });
+    .pipe(es.map(function (file, cb) {
+      var $ = cheerio.load(file.contents.toString());
 
-    var combineJs = streamqueue({
-        objectMode: true
-    }, jsStream, ngCacheStream)
+      $('img').each(function (index, elem) {
+        var src = $(this).attr('src');
+        if (src) {
+          // http or https or // 不变
+          // / or ./  加上域名
+          var newSrc = url.resolve('http://7xkfoy.com1.z0.glb.clouddn.com', src);
+          $(this).attr('src', newSrc);
+        }
+      });
+
+      file.contents = new Buffer($.html());
+      cb(null, file);
+    }))
+
+    .pipe(gulp_angular_templatecache('templates.js', {
+      module: appName,
+      root: 'templates'
+    }))
+
+    .pipe(gulp_uglify());
+
+
+  var jsStream = gulp_dom_src({
+    file: 'www/index.html',
+    selector: 'script[data-concat!="false"]',
+    attribute: 'src'
+  })
+
+    .pipe(gulp_ng_annotate())
+
+    .pipe(gulp_uglify());
+
+
+  var combineJs = es.merge(jsStream, ngCacheStream)
 
     .pipe(concat('app.full.min.js'))
 
-    .pipe(ngAnnotate())
+    .pipe(dest());
 
-    .pipe(uglify())
+
+  var htmlStream = gulp.src('www/index.html')
+
+    .pipe(es.through(function (data) {
+
+      // load jsdom
+      var $ = cheerio.load(data.contents.toString());
+
+      // 移除js和css
+      $('script[data-concat!="false"]').remove();
+      $('link[rel="stylesheet"]').remove();
+                       
+      // append 合并的js和css 路径
+      $('head').append('<link rel="stylesheet" href="css/app.full.min.css">\n');
+
+      $('body').after('<script src="app.full.min.js"></script>\n');
+
+      data.contents = new Buffer($.html());
+
+      // emit
+      this.emit('data', data);
+    }))
+
+    .pipe(concat('index.html'))
 
     .pipe(dest());
-    
-    var htmlStream = gulp.src('www/index.html')
 
-                    .pipe(es.through(function (data) {
+  var cssStream = gulp_dom_src({
+    file: 'www/index.html',
+    selector: 'link',
+    attribute: 'href'
+  })
 
-                        // load jsdom
-                        var $ = cheerio.load(data.contents.toString());
+    .pipe(concat('app.full.min.css'))
 
-                        // 移除js和css
-                        $('script[data-concat!="false"]').remove();
-                        $('link[rel="stylesheet"]').remove();
-                       
-                        // append 合并的js和css 路径
-                        $('head').append('<link rel="stylesheet" href="css/app.full.min.css">\n');
-                                     
-                        $('body').after('<script src="app.full.min.js"></script>\n');
-                        
-                        data.contents = new Buffer($.html());
+    .pipe(gulp_minify_css())
 
-                        // emit
-                        this.emit('data', data);
-                    }))
+    .pipe(dest('css'));
 
-                    .pipe(concat('index.html'))
+  var imageStream = gulp.src(['www/img/**/*'])
 
-                    .pipe(dest());
+    .pipe(gulp_imagemin({
+      progressive: true
+    }))
 
-    var cssStream = domSrc({
-                        file: 'www/index.html',
-                        selector: 'link',
-                        attribute: 'href'
-                    })
+    .pipe(dest('img'));
 
-                    .pipe(concat('app.full.min.css'))
-                    
-                    .pipe(minifyCSS())
+  var fontStream = gulp.src(['www/lib/ionic/fonts/*']).pipe(dest('fonts'));
 
-                    .pipe(dest('css'));
-    
-    var imageStream = gulp.src(['www/img/**/*'])
-    
-        .pipe(imagemin({
-           progressive: true
-       }))
-    
-        .pipe(dest('img'));
-    
-    var fontStream = gulp.src(['www/lib/ionic/fonts/*']).pipe(dest('fonts')); 
-
-    return es.merge(combineJs, htmlStream, cssStream, imageStream, fontStream);
+  return es.merge(combineJs, htmlStream, cssStream, imageStream, fontStream);
 
 });

@@ -203,3 +203,6 @@ angular.module('zhyl', ['ionic', 'zhyl.controllers', 'zhyl.services', 'zhyl.capt
     $urlRouterProvider.otherwise('/tab/dash');
 
   });
+
+
+console.log('this is a asdaaa')
